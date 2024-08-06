@@ -27,7 +27,11 @@ def login(request):
         # request 인자를 넣는 이유 
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('articles:index')
+            next_url = request.GET.get('next')
+            
+            # next 인자에 url이 없을 때 => None or 'articles:index'
+            # next 인자에 url이 있을 때 => '/articles/1/' or 'articles:index'
+            return redirect(next_url or 'articles:index')
 
     else:
         form = CustomAuthenticationForm()
