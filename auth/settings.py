@@ -123,5 +123,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# 새로운 변수 생성 : '{앱이름}.{모델명}'
+# 새로운 변수 생성 : '{앱이름}.{모델명}' 
 AUTH_USER_MODEL = 'accounts.User'
