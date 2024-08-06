@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect
 from .forms import ArticleForm
+from .models import Article
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    articles = Article.objects.all()
+    context = {
+        'articles':articles,
+    }
+    return render(request, 'index.html', context)
 
 def create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
         if form.is_valid():
-            form.save(commit=False) # user 정보가 넣어질 때까지 기다려
+            article = form.save(commit=False) # user 정보가 넣어질 때까지 기다려
             article.user = request.user
             article.save()
 
@@ -22,3 +27,11 @@ def create(request):
     }
     return render(request, 'form.html', context)
 
+def detail(request, id):
+    article = Article.objects.get(id=id)
+    context = {
+        'article':article,
+    }
+
+    return render(request, 'detail.html', context)
+    
