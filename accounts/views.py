@@ -10,7 +10,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('accounts:signup')
+            return redirect('accounts:login')
 
     # 사용자가 정보를 입력할 수 있는 빈종이 생성
     else:
@@ -27,7 +27,7 @@ def login(request):
         # request 인자를 넣는 이유 
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('accounts:login')
+            return redirect('articles:index')
 
     else:
         form = CustomAuthenticationForm()
