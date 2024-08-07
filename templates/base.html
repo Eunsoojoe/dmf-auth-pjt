@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url 'articles:index' %}">home</a>
     {% if user.is_authenticated %}
         <a href="{% url 'accounts:logout' %}">logout</a>
         <a href="{% url 'articles:create' %}">create</a>
