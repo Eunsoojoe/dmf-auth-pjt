@@ -15,9 +15,13 @@ class Article(models.Model):
     # 2. settings의 변수 활용
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    # 3. get_user_model이라는 내장함수 실행ㄴ
+    # 3. get_user_model이라는 내장함수 실행
     # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
+class Comment(models.Model):
+    content = models.TextField()
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)    # 부모가 지워지면 자식요소도 지워진다
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 

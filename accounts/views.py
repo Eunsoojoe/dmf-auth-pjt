@@ -29,6 +29,7 @@ def login(request):
             auth_login(request, form.get_user())
             next_url = request.GET.get('next')
             
+            # next => 로그인이 튕기는 경우
             # next 인자에 url이 없을 때 => None or 'articles:index'
             # next 인자에 url이 있을 때 => '/articles/1/' or 'articles:index'
             return redirect(next_url or 'articles:index')
