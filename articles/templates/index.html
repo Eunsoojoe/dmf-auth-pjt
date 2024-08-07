@@ -5,7 +5,7 @@
     {% for article in articles %}
     <div class="card my-3" >
         <div class="card-header">
-            {{article.user}}
+            <a class='text-decoration-none' href="{% url 'accounts:profile' username=article.user.username %}">{{article.user}}</a>
         </div>
         <div class="card-body">
             <h5 class="card-title">{{article.title}}</h5>
