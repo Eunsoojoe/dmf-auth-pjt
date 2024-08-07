@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 {% block body %}
     <div class="card">
         <div class="card-header">
@@ -11,10 +12,14 @@
 
         {% if user ==  article.user %}
         <div class="card-footer">
-            <form action="{% url 'articles:delete' id=article.id %}" mehtod="POST">
+            <form class='d-inline' action="{% url 'articles:delete' id=article.id %}" mehtod="POST">
                 {% csrf_token %}
                 <input type="submit" value="delete" class="btn btn-danger">
             </form>
+            <form class='d-inline' action="{% url 'articles:update' id=article.id %}">
+                <input type="submit" value="update" class="btn btn-warning">
+            </form>
+           
         </div>
         {% endif %}
 
@@ -23,7 +28,7 @@
     <form action="{% url 'articles:comment_create' article_id=article.id %}" method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <input type="submit">
+        <input type="submit" value="제출" class="btn btn-primary">
     </form>
 
     
