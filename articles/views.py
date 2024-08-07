@@ -39,6 +39,14 @@ def detail(request, id):
     }
     return render(request, 'detail.html', context)
 
+def delete(request, id):
+    article = Article.objects.get(id=id)
+    if request.user == article.user:
+        article.delete()
+
+    return redirect('articles:index')
+
+
 def comment_create(request, article_id):
     form = CommentForm(request.POST)
 
