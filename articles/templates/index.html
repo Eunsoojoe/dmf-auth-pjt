@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>여기는 index</h1>
     {% for article in articles %}
-        <p>{{article.title}}</p>
-        <p>{{article.content}}</p>
-        <p>{{article.user}}</p>
-        <a href="{% url 'articles:detail' id=article.id%}">detail</a>
-        <hr>
+    <div class="card my-3" >
+        <div class="card-header">
+            {{article.user}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{article.title}}</h5>
+            {% if user.is_authenticated  %}
+                <a href="{% url 'articles:detail' id=article.id %}" class="btn btn-primary">detail</a>
+            {% endif %}
+        </div>
+    </div> 
     {% endfor %}
 {% endblock %}
